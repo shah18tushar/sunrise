@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown, FaQuestionCircle } from "react-icons/fa";
 import Image from "next/image";
@@ -91,7 +91,7 @@ const Faq = () => {
                 <div className="relative z-10 text-center">
                   <div className="relative inline-block">
                     <Image
-                      src="/faq.jpg"
+                      src="/img.jpg"
                       alt="FAQ Illustration"
                       width={100}
                       height={100}
