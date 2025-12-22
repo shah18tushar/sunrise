@@ -223,11 +223,11 @@ const Footer = () => {
   const contactSection = {
     title: "Contact Info",
     links: [
-      "Email: support@sunrise.ai",
+      "Email: support@sunrise.com",
       "Phone: +91 98765 43210",
       "Address: Bangalore, India",
       "Support: 24/7 Live Chat",
-      "Sales: sales@sunrise.ai",
+      "Sales: sales@sunrise.com",
     ],
   };
 
