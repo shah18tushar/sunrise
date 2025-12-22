@@ -78,7 +78,7 @@ We support the rapidly evolving pharmaceutical industry with comprehensive EPCM 
         </div>
 
         {/* Cards */}
-        <div className="flex w-full gap-3 h-[70vh]">
+        <div className="flex w-full gap-3 h-[55vh]">
           {carPanels.map((car) => {
             if (car.cardType === "cta") {
               return (

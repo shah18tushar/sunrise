@@ -14,23 +14,54 @@
 // const Navbar = () => {
 //   const [isOpen, setIsOpen] = useState(false);
 //   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+//   const [isScrolled, setIsScrolled] = useState(false);
 
 //   useEffect(() => {
 //     document.body.style.overflow = isOpen ? "hidden" : "";
 //   }, [isOpen]);
 
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       // Get the hero section height (typically viewport height)
+//       const heroHeight = window.innerHeight;
+//       const scrollPosition = window.scrollY;
+      
+//       // Set isScrolled to true when scrolled past hero section
+//       setIsScrolled(scrollPosition > heroHeight - 100);
+//     };
+
+//     // Add scroll event listener
+//     window.addEventListener("scroll", handleScroll);
+    
+//     // Call once on mount to set initial state
+//     handleScroll();
+
+//     // Cleanup
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
 //   return (
 //     <>
 //       {/* === NAVBAR === */}
-//       <nav className="w-full fixed top-0 left-0 z-50 bg-transparent backdrop-blur-md transition-all duration-500">
-//         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+//       <nav 
+//         className={`w-full fixed top-0 left-0 z-50 transition-all duration-500 ${
+//           isScrolled 
+//             ? "bg-white shadow-lg" 
+//             : "bg-transparent"
+//         }`}
+//       >
+//         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-1.5">
 //           <div>
-//             <img src="logo.jpeg" alt="logo" className="w-[8rem] h-16" />
+//             <img src="logo.jpeg" alt="logo" className="w-32 h-16 rounded-lg" />
 //           </div>
 
 //           <button
 //             onClick={() => setIsOpen(true)}
-//             className="flex items-center cursor-pointer gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0B5DA7] via-[#39ACE2] to-[#0B5DA7] text-white font-semibold shadow-lg hover:shadow-[#39ACE2]/40 hover:scale-105 transition duration-300"
+//             className={`flex items-center cursor-pointer gap-2 px-5 py-2.5 rounded-xl font-semibold shadow-lg hover:scale-105 transition duration-300 ${
+//               isScrolled
+//                 ? "bg-linear-to-r from-[#0B5DA7] via-[#39ACE2] to-[#0B5DA7] text-white hover:shadow-[#39ACE2]/40"
+//                 : "bg-linear-to-r from-[#0B5DA7] via-[#39ACE2] to-[#0B5DA7] text-white hover:shadow-[#39ACE2]/40"
+//             }`}
 //           >
 //             <HiMiniBars3BottomRight className="text-2xl" />
 //             <span>Menu</span>
@@ -108,7 +139,7 @@
 //                 {/* Close Button */}
 //                 <button
 //                   onClick={() => setIsOpen(false)}
-//                   className="absolute top-6 right-34 cursor-pointer flex items-center gap-2 text-lg px-5 py-2 rounded-xl bg-gradient-to-r from-[#0B5DA7] via-[#39ACE2] to-[#0B5DA7] text-white font-semibold shadow-lg hover:bg-[#39ACE2]/90 hover:text-white hover:shadow-[#39ACE2]/40 transition duration-300 backdrop-blur-sm z-50"
+//                   className="absolute top-4 right-34 cursor-pointer flex items-center gap-2 text-lg px-5 py-2 rounded-xl bg-gradient-to-r from-[#0B5DA7] via-[#39ACE2] to-[#0B5DA7] text-white font-semibold shadow-lg hover:bg-[#39ACE2]/90 hover:text-white hover:shadow-[#39ACE2]/40 transition duration-300 backdrop-blur-sm z-50"
 //                 >
 //                   <IoClose className="text-2xl" />
 //                   <span>Close</span>
@@ -134,7 +165,10 @@
 //   );
 // };
 
-// export default Navbar;
+// export default Navbar;  
+
+
+
 
 
 
@@ -162,50 +196,269 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Get the hero section height (typically viewport height)
       const heroHeight = window.innerHeight;
       const scrollPosition = window.scrollY;
-      
-      // Set isScrolled to true when scrolled past hero section
       setIsScrolled(scrollPosition > heroHeight - 100);
     };
 
-    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
-    
-    // Call once on mount to set initial state
     handleScroll();
 
-    // Cleanup
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
+      {/* === CINEMATIC PREMIUM BRANDING STYLES === */}
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        @keyframes shimmer-flow {
+          0% {
+            background-position: -200% center;
+          }
+          100% {
+            background-position: 200% center;
+          }
+        }
+
+        @keyframes cinematic-glow {
+          0%, 100% {
+            box-shadow: 
+              0 0 40px rgba(107, 182, 232, 0.2),
+              0 0 80px rgba(31, 79, 163, 0.15),
+              inset 0 1px 3px rgba(255, 255, 255, 0.3),
+              inset 0 -1px 3px rgba(107, 182, 232, 0.2);
+          }
+          50% {
+            box-shadow: 
+              0 0 60px rgba(107, 182, 232, 0.3),
+              0 0 100px rgba(31, 79, 163, 0.2),
+              inset 0 1px 3px rgba(255, 255, 255, 0.4),
+              inset 0 -1px 3px rgba(107, 182, 232, 0.3);
+          }
+        }
+
+        @keyframes elegant-float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-5px);
+          }
+        }
+
+        @keyframes light-ray {
+          0% {
+            transform: translateX(-100%) rotate(-45deg);
+            opacity: 0;
+          }
+          50% {
+            opacity: 0.3;
+          }
+          100% {
+            transform: translateX(200%) rotate(-45deg);
+            opacity: 0;
+          }
+        }
+
+        @keyframes text-shimmer {
+          0% {
+            background-position: -500% center;
+          }
+          100% {
+            background-position: 500% center;
+          }
+        }
+
+        .cinematic-logo-container {
+          animation: elegant-float 8s ease-in-out infinite;
+        }
+
+        .glass-brand-frame {
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0.08) 50%,
+            rgba(255, 255, 255, 0.12) 100%
+          );
+          backdrop-filter: blur(25px) saturate(180%);
+          -webkit-backdrop-filter: blur(25px) saturate(180%);
+          border: 1.5px solid rgba(255, 255, 255, 0.25);
+          animation: cinematic-glow 6s ease-in-out infinite;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .shimmer-overlay {
+          background: linear-gradient(
+            110deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(255, 255, 255, 0.4) 50%,
+            transparent 60%,
+            transparent 100%
+          );
+          background-size: 200% 100%;
+          animation: shimmer-flow 10s linear infinite;
+        }
+
+        .light-ray-effect {
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(107, 182, 232, 0.4),
+            transparent
+          );
+          animation: light-ray 8s ease-in-out infinite;
+        }
+
+        .brand-title {
+          font-family: 'Cinzel', serif;
+          background: linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #6BB6E8 30%,
+            #ffffff 50%,
+            #6BB6E8 70%,
+            #ffffff 100%
+          );
+          background-size: 300% 300%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: text-shimmer 8s linear infinite;
+          text-shadow: 0 0 30px rgba(107, 182, 232, 0.5);
+          letter-spacing: 0.15em;
+        }
+
+        .brand-tagline {
+          font-family: 'Montserrat', sans-serif;
+          color: rgba(255, 255, 255, 0.95);
+          text-shadow: 
+            0 2px 10px rgba(31, 79, 163, 0.6),
+            0 0 20px rgba(107, 182, 232, 0.4);
+          letter-spacing: 0.25em;
+        }
+
+        .accent-border-top {
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            #6BB6E8 20%,
+            #1F4FA3 50%,
+            #6BB6E8 80%,
+            transparent 100%
+          );
+        }
+
+        .accent-border-bottom {
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            #1F4FA3 20%,
+            #6BB6E8 50%,
+            #1F4FA3 80%,
+            transparent 100%
+          );
+        }
+
+        .decorative-corner {
+          background: linear-gradient(135deg, #6BB6E8, #1F4FA3);
+        }
+
+        .excellence-badge {
+          background: linear-gradient(135deg, #1F4FA3 0%, #6BB6E8 100%);
+          box-shadow: 
+            0 4px 15px rgba(31, 79, 163, 0.4),
+            inset 0 1px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .side-ornament {
+          background: linear-gradient(
+            180deg,
+            transparent,
+            rgba(107, 182, 232, 0.4),
+            transparent
+          );
+        }
+      `}</style>
+
       {/* === NAVBAR === */}
       <nav 
         className={`w-full fixed top-0 left-0 z-50 transition-all duration-500 ${
-          isScrolled 
-            ? "bg-white shadow-lg" 
-            : "bg-transparent backdrop-blur-md"
+          isScrolled ? "bg-white shadow-lg" : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-1.5">
+        {/* DYNAMIC PADDING: py-10 when not scrolled, py-1.5 when scrolled */}
+        <div className={`max-w-7xl mx-auto flex items-center justify-between px-6 transition-all duration-500 ${
+          isScrolled ? "py-1.5" : "py-10"
+        }`}>
+          {/* === CINEMATIC BRANDING === */}
           <div>
-            <img src="logo.jpeg" alt="logo" className="w-32 h-16" />
+            {!isScrolled ? (
+              /* TRANSPARENT STATE — CINEMATIC TEXT-BASED BRANDING */
+              <div className="cinematic-logo-container relative flex items-center gap-6">
+                
+                {/* MAIN GLASS BRAND FRAME */}
+                <div className="glass-brand-frame relative px-6 py-3 rounded-2xl">
+                  
+                  {/* SHIMMER OVERLAY */}
+                  <div className="shimmer-overlay absolute inset-0 rounded-2xl pointer-events-none" />
+                  
+                  {/* LIGHT RAY EFFECT */}
+                  <div className="light-ray-effect absolute inset-0 rounded-2xl pointer-events-none w-32 h-full" />
+                  
+                  {/* BRAND CONTENT */}
+                  <div className="relative space-y-1">
+                    {/* COMPANY NAME */}
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-white/60" />
+                      <h1 className="brand-title text-4xl font-black tracking-widest">
+                        SUNRISE
+                      </h1>
+                      <div className="w-12 h-[2px] bg-gradient-to-l from-transparent via-white/40 to-white/60" />
+                    </div>
+
+                    {/* SUBTITLE - CONSULTING */}
+                    <div className="flex justify-center">
+                      <span className="text-white/90 text-sm font-semibold tracking-[0.3em] uppercase" style={{ fontFamily: "'Montserrat', sans-serif", textShadow: '0 2px 8px rgba(31, 79, 163, 0.5)' }}>
+                        Consulting
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* SCROLLED STATE — LOGO IMAGE */
+              <img
+                src="/logo.jpeg"
+                alt="Sunrise Logo"
+                className="w-32 h-16 rounded-lg"
+              />
+            )}
           </div>
 
-          <button
-            onClick={() => setIsOpen(true)}
-            className={`flex items-center cursor-pointer gap-2 px-5 py-2.5 rounded-xl font-semibold shadow-lg hover:scale-105 transition duration-300 ${
-              isScrolled
-                ? "bg-linear-to-r from-[#0B5DA7] via-[#39ACE2] to-[#0B5DA7] text-white hover:shadow-[#39ACE2]/40"
-                : "bg-linear-to-r from-[#0B5DA7] via-[#39ACE2] to-[#0B5DA7] text-white hover:shadow-[#39ACE2]/40"
-            }`}
-          >
-            <HiMiniBars3BottomRight className="text-2xl" />
-            <span>Menu</span>
-          </button>
+          {/* === CONDITIONAL MENU BUTTONS === */}
+          {!isScrolled ? (
+            /* NOT SCROLLED — MINIMAL WHITE BUTTON */
+            <button
+              onClick={() => setIsOpen(true)}
+              className="flex items-center cursor-pointer gap-2 px-5 py-2.5 font-semibold hover:scale-125 transition duration-500 text-2xl text-white"
+            >
+              <HiMiniBars3BottomRight className="text-2xl" />
+              <span>Menu</span>
+            </button>
+          ) : (
+            /* SCROLLED — BORDERED CYAN BUTTON */
+            <button
+              onClick={() => setIsOpen(true)}
+              className="flex items-center cursor-pointer gap-2 px-5 py-2.5 rounded-xl font-semibold shadow-lg hover:scale-105 transition duration-300 border border-cyan-600 bg-transparent text-cyan-600 hover:shadow-[#6BB6E8]/40"
+            >
+              <HiMiniBars3BottomRight className="text-2xl" />
+              <span>Menu</span>
+            </button>
+          )}
         </div>
       </nav>
 
@@ -213,85 +466,44 @@ const Navbar = () => {
       <AnimatePresence mode="wait">
         {isOpen && (
           <>
-            {/* FIRST LAYER — Deep Cinematic Glow */}
             <motion.div
               key="first-layer"
               className="fixed inset-0 z-[90]"
               style={{
-                backgroundImage: `
-                  radial-gradient(circle at 20% 30%, rgba(11,50,90,0.3) 0%, transparent 45%),
-                  radial-gradient(circle at 80% 70%, rgba(0,26,53,0.35) 0%, transparent 55%),
-                  linear-gradient(135deg, #000000 0%, #000814 30%, #001233 50%, #001a35 70%, #0B5DA7 90%, #39ACE2 100%)`,
-                boxShadow: `
-                  inset 0 0 200px rgba(0, 0, 0, 0.9),
-                  inset 0 0 300px rgba(0, 20, 40, 0.6),
-                  inset 0 0 350px rgba(11,50,90,0.4)
-                `,
+                backgroundImage: `radial-gradient(circle at 20% 30%, rgba(31,79,163,0.3) 0%, transparent 45%),
+                  radial-gradient(circle at 80% 70%, rgba(107,182,232,0.25) 0%, transparent 55%),
+                  linear-gradient(135deg, #000000 0%, #001233 30%, #1F4FA3 60%, #6BB6E8 90%, #ffffff 100%)`,
+                boxShadow: `inset 0 0 200px rgba(0, 0, 0, 0.9),
+                  inset 0 0 300px rgba(31, 79, 163, 0.4),
+                  inset 0 0 350px rgba(107, 182, 232, 0.3)`,
               }}
               initial={{ clipPath: "circle(0% at 100% 0%)", opacity: 0 }}
-              animate={{
-                clipPath: "circle(150% at 50% 50%)",
-                opacity: 1,
-              }}
-              exit={{
-                clipPath: "circle(0% at 100% 0%)",
-                opacity: 0,
-              }}
+              animate={{ clipPath: "circle(150% at 50% 50%)", opacity: 1 }}
+              exit={{ clipPath: "circle(0% at 100% 0%)", opacity: 0 }}
               transition={{ duration: 1.3, ease: "easeInOut" }}
             />
 
-            {/* SECOND LAYER — Ultra Premium 3D Universe */}
             <motion.div
               key="second-layer"
               className="fixed inset-0 z-[95]"
               initial={{ clipPath: "circle(0% at 100% 0%)", opacity: 0 }}
-              animate={{
-                clipPath: "circle(150% at 50% 50%)",
-                opacity: 1,
-              }}
-              exit={{
-                clipPath: "circle(0% at 100% 0%)",
-                opacity: 0,
-              }}
+              animate={{ clipPath: "circle(150% at 50% 50%)", opacity: 1 }}
+              exit={{ clipPath: "circle(0% at 100% 0%)", opacity: 0 }}
               transition={{ duration: 1.5, delay: 0.15, ease: "easeInOut" }}
             >
-              {/* Three.js Canvas with 3D Particles */}
               <ParticleCanvas />
 
-              {/* Deep Shadow Overlay */}
-              <div
-                className="absolute inset-0 w-full h-full pointer-events-none"
-                style={{
-                  background: `
-                    radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.4) 100%)
-                  `,
-                  boxShadow: `
-                    inset 0 0 400px rgba(0, 0, 0, 0.95),
-                    inset 0 0 350px rgba(0, 8, 20, 0.9),
-                    inset 0 0 250px rgba(0, 15, 35, 0.7),
-                    inset 0 -200px 300px rgba(0, 0, 0, 0.95)
-                  `,
-                }}
-              />
-
-              {/* Content Layer */}
-              <div className="relative z-10 flex items-center justify-center h-full w-full overflow-hidden">
-                {/* Close Button */}
+              <div className="relative z-10 flex items-center justify-center h-full w-full">
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="absolute top-4 right-34 cursor-pointer flex items-center gap-2 text-lg px-5 py-2 rounded-xl bg-gradient-to-r from-[#0B5DA7] via-[#39ACE2] to-[#0B5DA7] text-white font-semibold shadow-lg hover:bg-[#39ACE2]/90 hover:text-white hover:shadow-[#39ACE2]/40 transition duration-300 backdrop-blur-sm z-50"
+                  className="absolute top-16 right-34 cursor-pointer flex items-center gap-2 text-lg px-5 py-2 rounded-xl bg-gradient-to-r from-[#1F4FA3] via-[#6BB6E8] to-[#1F4FA3] text-white font-semibold shadow-lg"
                 >
                   <IoClose className="text-2xl" />
                   <span>Close</span>
                 </button>
 
-                {/* Social Media Icons */}
                 <SocialMediaIcons />
-
-                {/* Contact Info */}
                 <ContactInfo />
-
-                {/* Menu Items */}
                 <MenuItems 
                   hoveredIndex={hoveredIndex} 
                   setHoveredIndex={setHoveredIndex} 
@@ -305,4 +517,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;  
+export default Navbar;
