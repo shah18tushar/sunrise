@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 import * as THREE from "three";
 import {
   FaFacebookF,
@@ -189,8 +190,8 @@ const Footer = () => {
 
   const navigationLinks = [
     {
-      title: "Solutions",
-      links: ["AI Infrastructure", "Cloud Computing", "Edge Computing", "Quantum Ready", "GPU Clusters"],
+      title: "Quick Links",
+      links: ["Home", "About Us", "Our Services", "Contact Us"],
     },
     {
       title: "Services",
@@ -229,6 +230,14 @@ const Footer = () => {
       "Support: 24/7 Live Chat",
       "Sales: sales@sunrise.com",
     ],
+  };
+
+  // Map for Quick Links to Next.js routes (only the 4 specified links)
+  const quickLinkMap: Record<string, string> = {
+    "Home": "/",
+    "About Us": "/aboutuspage",
+    "Our Services": "/servicespage",
+    "Contact Us": "/contactuspage",
   };
 
   return (
@@ -401,18 +410,32 @@ const Footer = () => {
                 {section.title}
               </h5>
               <ul className="space-y-3">
-                {section.links.map((link, linkIdx) => (
-                  <li key={linkIdx}>
-                    <motion.a
-                      href="#"
-                      whileHover={{ x: 5 }}
-                      className="text-gray-400 hover:text-cyan-400 transition-all text-sm flex items-center gap-2 group"
-                    >
-                      <span className="w-0 h-0.5 bg-cyan-400 group-hover:w-3 transition-all" />
-                      {link}
-                    </motion.a>
-                  </li>
-                ))}
+                {section.title === "Quick Links"
+                  ? section.links.map((link, linkIdx) => (
+                      <li key={linkIdx}>
+                        <Link href={quickLinkMap[link] || "#"} legacyBehavior>
+                          <motion.a
+                            whileHover={{ x: 5 }}
+                            className="text-gray-400 hover:text-cyan-400 transition-all text-sm flex items-center gap-2 group"
+                          >
+                            <span className="w-0 h-0.5 bg-cyan-400 group-hover:w-3 transition-all" />
+                            {link}
+                          </motion.a>
+                        </Link>
+                      </li>
+                    ))
+                  : section.links.map((link, linkIdx) => (
+                      <li key={linkIdx}>
+                        <motion.a
+                          href="#"
+                          whileHover={{ x: 5 }}
+                          className="text-gray-400 hover:text-cyan-400 transition-all text-sm flex items-center gap-2 group"
+                        >
+                          <span className="w-0 h-0.5 bg-cyan-400 group-hover:w-3 transition-all" />
+                          {link}
+                        </motion.a>
+                      </li>
+                    ))}
               </ul>
             </motion.div>
           ))}

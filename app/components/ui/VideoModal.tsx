@@ -169,7 +169,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ show, onClose }) => {
               />
 
               <motion.video
-                src="/hero.mp4"
+                src="https://geneire.com/wp-content/uploads/2024/12/Geneire-Homepage-x264.mp4"
                 controls
                 autoPlay
                 className="w-full h-[70vh] object-cover rounded-xl pointer-events-auto

@@ -73,9 +73,9 @@ const Hero = () => {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-fill"
         >
-          <source src="/hero.mp4" type="video/mp4" />
+          <source src="https://geneire.com/wp-content/uploads/2024/12/Geneire-Homepage-x264.mp4" type="video/mp4" />
         </video>
 
         {/* ===== BASE DARK CINEMATIC LAYER ===== */}

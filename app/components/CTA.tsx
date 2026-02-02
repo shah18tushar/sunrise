@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const CTA = () => {
   return (
     <section className="relative pb-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="relative flex justify-center">
-
           {/* ===== MAIN CTA PILL ===== */}
           <div
             className="
@@ -38,9 +38,7 @@ const CTA = () => {
                 <h3 className="text-white text-base font-semibold leading-tight">
                   William Smith
                 </h3>
-                <p className="text-sm text-[#9FB3D9]">
-                  Support Person
-                </p>
+                <p className="text-sm text-[#9FB3D9]">Support Person</p>
               </div>
             </div>
 
@@ -53,8 +51,9 @@ const CTA = () => {
 
             {/* RIGHT: BUTTON */}
             <div>
-              <button
-                className="
+              <Link href="/contactuspage">
+                <button
+                  className="
                   text-white
                   text-sm
                   font-semibold
@@ -63,14 +62,16 @@ const CTA = () => {
                   transition-all
                   duration-500
                   hover:scale-[1.03]
+                  cursor-pointer
                 "
-                style={{
-                  background:
-                    "linear-gradient(90deg, #1E5FD8 0%, #4DA3FF 100%)",
-                }}
-              >
-                Contact us!
-              </button>
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #1E5FD8 0%, #4DA3FF 100%)",
+                  }}
+                >
+                  Contact us!
+                </button>
+              </Link>
             </div>
           </div>
 
